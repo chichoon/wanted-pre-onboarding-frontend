@@ -14,13 +14,13 @@ export const TodoPage = () => {
   }, []);
 
   return (
-    <>
+    <main>
       <AddTodoForm setTodoList={setTodoList} />
-      <ul>
+      <ul className="px-5 py-2">
         {todoList.map((todo) => (
           <TodoElement key={todo.id} todo={todo} setTodoList={setTodoList} />
         ))}
       </ul>
-    </>
+    </main>
   );
 };

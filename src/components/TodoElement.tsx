@@ -59,12 +59,13 @@ export const TodoElement = ({ todo, setTodoList }: Props) => {
 
   if (isEditing)
     return (
-      <li>
+      <li className="flex flex-row items-center mb-3">
         <label>
           <input
             type="checkbox"
             checked={todo.isCompleted}
             onChange={handleChangeCheckbox}
+            className="mr-3"
           />
         </label>
         <input
@@ -72,30 +73,45 @@ export const TodoElement = ({ todo, setTodoList }: Props) => {
           value={newTodoTitle}
           data-testid="modify-input"
           onChange={handleChangeInput}
+          className="border-b border-b-slate-300 w-60 text-slate-600"
         />
-        <button data-testid="submit-button" onClick={handleClickSubmitModify}>
+        <button
+          disabled={newTodoTitle.length <= 0}
+          data-testid="submit-button"
+          onClick={handleClickSubmitModify}
+          className="disabled:bg-slate-300 bg-slate-400 px-3 ml-3 rounded-md text-white">
           제출
         </button>
-        <button data-testid="cancel-button" onClick={handleClickCancelModify}>
+        <button
+          data-testid="cancel-button"
+          onClick={handleClickCancelModify}
+          className="disabled:bg-slate-300 bg-slate-400 px-3 ml-3 rounded-md text-white">
           취소
         </button>
       </li>
     );
 
   return (
-    <li>
+    <li className="flex flex-row items-center mb-3">
       <label>
         <input
           type="checkbox"
           checked={todo.isCompleted}
           onChange={handleChangeCheckbox}
+          className="mr-3"
         />
-        <span>{todo.todo}</span>
+        <span className="text-slate-600">{todo.todo}</span>
       </label>
-      <button data-testid="modify-button" onClick={handleClickModify}>
+      <button
+        data-testid="modify-button"
+        onClick={handleClickModify}
+        className="bg-slate-400 px-3 ml-3 rounded-md text-white">
         수정
       </button>
-      <button data-testid="delete-button" onClick={handleClickDelete}>
+      <button
+        data-testid="delete-button"
+        onClick={handleClickDelete}
+        className=" bg-slate-400 px-3 ml-3 rounded-md text-white">
         삭제
       </button>
     </li>

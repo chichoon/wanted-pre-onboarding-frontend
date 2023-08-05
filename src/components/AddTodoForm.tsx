@@ -32,14 +32,23 @@ export const AddTodoForm = ({ setTodoList }: Props) => {
   }, []);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-row items-center px-5 py-2">
       <input
         type="text"
+        placeholder="할 일 제목을 입력하세요"
         data-testid="new-todo-input"
         value={todoTitle}
         onChange={handleChange}
+        className="border-b border-b-slate-300 w-60"
       />
-      <button data-testid="new-todo-add-button">추가</button>
+      <button
+        disabled={todoTitle.length === 0}
+        data-testid="new-todo-add-button"
+        className="ml-5 disabled:bg-slate-300 bg-slate-400 text-white px-3 rounded-md">
+        추가
+      </button>
     </form>
   );
 };
