@@ -6,14 +6,13 @@ export function useCheckLogin() {
   const { pathname } = window.location;
 
   useEffect(() => {
-    if (pathname === "/todo" && !localStorage.getItem("token")) {
+    const token = localStorage.getItem("token");
+    if (token) {
+      if (pathname === "/signin" || pathname === "signup") {
+        nav("/todo");
+      }
+    } else if (pathname === "/todo") {
       nav("/signin");
-    }
-    if (
-      pathname === "/signin" ||
-      (pathname === "signup" && localStorage.getItem("token"))
-    ) {
-      nav("/todo");
     }
   }, []);
 }
