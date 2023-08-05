@@ -14,5 +14,5 @@ export function useCheckLogin() {
     } else if (pathname === "/todo") {
       nav("/signin");
     }
-  }, []);
+  }, [pathname, nav]);
 }
