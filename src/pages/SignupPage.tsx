@@ -1,10 +1,16 @@
 import axios from "axios";
-import { FormEvent, useCallback, useRef, useState } from "react";
+import { useAuth } from "hooks";
+import { ChangeEvent, FormEvent, useCallback, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export const SignupPage = () => {
-  const emailRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
+  const {
+    email,
+    password,
+    isDisabled,
+    handleChangeEmail,
+    handleChangePassword,
+  } = useAuth();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const nav = useNavigate();
 
@@ -12,8 +18,8 @@ export const SignupPage = () => {
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const body = {
-        email: emailRef.current?.value,
-        password: passwordRef.current?.value,
+        email,
+        password,
       };
       console.log(body);
       axios
@@ -35,14 +41,23 @@ export const SignupPage = () => {
     <div>
       <h1>회원가입</h1>
       <form onSubmit={handleSubmit}>
-        <input type="email" data-testid="email-input" required ref={emailRef} />
+        <input
+          type="email"
+          data-testid="email-input"
+          required
+          value={email}
+          onChange={handleChangeEmail}
+        />
         <input
           type="password"
           minLength={8}
           data-testid="password-input"
-          ref={passwordRef}
+          value={password}
+          onChange={handleChangePassword}
         />
-        <button data-testid="signup-button">회원가입</button>
+        <button data-testid="signup-button" disabled={isDisabled}>
+          회원가입
+        </button>
         {errorMessage && <span>{errorMessage}</span>}
       </form>
       <span>
