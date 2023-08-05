@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useAuth } from "hooks";
-import { ChangeEvent, FormEvent, useCallback, useRef, useState } from "react";
+import { FormEvent, useCallback, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export const SignupPage = () => {
@@ -34,7 +34,7 @@ export const SignupPage = () => {
           else setErrorMessage(err.message);
         });
     },
-    [nav]
+    [nav, email, password]
   );
 
   return (

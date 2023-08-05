@@ -35,7 +35,7 @@ export const SigninPage = () => {
           else setErrorMessage(err.message);
         });
     },
-    [nav]
+    [nav, email, password]
   );
 
   return (
