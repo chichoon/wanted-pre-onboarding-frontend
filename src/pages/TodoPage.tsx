@@ -14,7 +14,7 @@ export const TodoPage = () => {
 
   return (
     <>
-      <AddTodoForm />
+      <AddTodoForm setTodoList={setTodoList} />
       <ul>
         {todoList.map((todo) => (
           <li key={todo.id}>{todo.todo}</li>
