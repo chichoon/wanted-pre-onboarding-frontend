@@ -25,8 +25,10 @@ export const SigninPage = () => {
       axios
         .post("/auth/signin", body)
         .then((res) => {
-          alert("로그인에 성공하였습니다.");
           localStorage.setItem("token", res.data.access_token);
+        })
+        .then(() => {
+          alert("로그인에 성공하였습니다.");
           nav("/todo");
         })
         .catch((err) => {
@@ -50,7 +52,7 @@ export const SigninPage = () => {
           onChange={handleChangeEmail}
         />
         <input
-          type="text"
+          type="password"
           data-testid="password-input"
           required
           value={password}

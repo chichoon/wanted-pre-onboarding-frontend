@@ -13,7 +13,14 @@ export function createTodo(todo: string) {
 }
 
 export function getTodos() {
-  return todoInstance.get("/todos").then((res) => res.data);
+  return todoInstance
+    .get("/todos")
+    .then((res) => res.data)
+    .catch(() => {
+      // eslint-disable-next-line no-restricted-globals
+      location.reload();
+      return [];
+    });
 }
 
 export function updateTodo(id: number, todo: string, isCompleted: boolean) {
