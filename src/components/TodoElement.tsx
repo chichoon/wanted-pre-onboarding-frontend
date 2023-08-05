@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 
-import { updateTodo } from "services/todoInstance";
+import { deleteTodo, updateTodo } from "services/todoInstance";
 import { Todo } from "types/todo";
 
 interface Props {
@@ -46,7 +46,16 @@ export const TodoElement = ({ todo, setTodoList }: Props) => {
   const handleClickCancelModify = useCallback(() => {
     setIsEditing(false);
     setNewTodoTitle(todo.todo);
-  }, []);
+  }, [todo]);
+
+  const handleClickDelete = useCallback(() => {
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm("정말 삭제하시겠습니까?")) {
+      deleteTodo(todo.id).then(() => {
+        setTodoList((prev) => prev.filter((element) => element.id !== todo.id));
+      });
+    }
+  }, [setTodoList, todo]);
 
   if (isEditing)
     return (
@@ -58,7 +67,12 @@ export const TodoElement = ({ todo, setTodoList }: Props) => {
             onChange={handleChangeCheckbox}
           />
         </label>
-        <input type="text" value={newTodoTitle} onChange={handleChangeInput} />
+        <input
+          type="text"
+          value={newTodoTitle}
+          data-testid="modify-input"
+          onChange={handleChangeInput}
+        />
         <button data-testid="submit-button" onClick={handleClickSubmitModify}>
           제출
         </button>
@@ -81,7 +95,9 @@ export const TodoElement = ({ todo, setTodoList }: Props) => {
       <button data-testid="modify-button" onClick={handleClickModify}>
         수정
       </button>
-      <button data-testid="delete-button">삭제</button>
+      <button data-testid="delete-button" onClick={handleClickDelete}>
+        삭제
+      </button>
     </li>
   );
 };
