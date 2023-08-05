@@ -8,10 +8,14 @@ export function useCheckLogin() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      if (pathname === "/signin" || pathname === "/signup") {
+      if (
+        pathname === "/signin" ||
+        pathname === "/signup" ||
+        pathname === "/"
+      ) {
         nav("/todo");
       }
-    } else if (pathname === "/todo") {
+    } else if (pathname === "/todo" || pathname === "/") {
       nav("/signin");
     }
   }, [pathname, nav]);
