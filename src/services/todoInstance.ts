@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const todoInstance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: "https://www.pre-onboarding-selection-task.shop",
   headers: {
     Authorization: `Bearer ${localStorage.getItem("token")}`,
     "Content-Type": "application/json",
