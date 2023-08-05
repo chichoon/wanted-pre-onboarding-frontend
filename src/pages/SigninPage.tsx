@@ -41,31 +41,46 @@ export const SigninPage = () => {
   );
 
   return (
-    <div>
-      <h1>로그인</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          data-testid="email-input"
-          required
-          value={email}
-          onChange={handleChangeEmail}
-        />
-        <input
-          type="password"
-          data-testid="password-input"
-          required
-          value={password}
-          onChange={handleChangePassword}
-        />
-        <button data-testid="signin-button" disabled={isDisabled}>
-          로그인
+    <main>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-row px-5 py-4 mb-2 h-fit">
+        <div className="flex flex-col mr-5">
+          <input
+            type="text"
+            data-testid="email-input"
+            required
+            value={email}
+            onChange={handleChangeEmail}
+            placeholder="이메일"
+            className="border-b border-b-slate-300 w-60 mb-2"
+          />
+          <input
+            type="password"
+            data-testid="password-input"
+            required
+            value={password}
+            onChange={handleChangePassword}
+            placeholder="비밀번호"
+            className="border-b border-b-slate-300 w-60"
+          />
+        </div>
+        <button
+          data-testid="signin-button"
+          disabled={isDisabled}
+          className="disabled:bg-slate-300 bg-slate-400 px-3 rounded-md text-white">
+          <span>로그인</span>
         </button>
-        {errorMessage && <span>{errorMessage}</span>}
       </form>
-      <span>
-        회원이 아니세요? <Link to="/signup">회원가입 하러 가기</Link>
-      </span>
-    </div>
+      <div className="flex flex-col px-5 ">
+        {errorMessage && <span className="text-red-500">{errorMessage}</span>}
+        <span className="text-slate-600">
+          회원이 아니세요?{" "}
+          <Link to="/signup" className="text-blue-400">
+            회원가입 하러 가기
+          </Link>
+        </span>
+      </div>
+    </main>
   );
 };

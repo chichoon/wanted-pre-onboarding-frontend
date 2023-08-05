@@ -38,31 +38,46 @@ export const SignupPage = () => {
   );
 
   return (
-    <div>
-      <h1>회원가입</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          data-testid="email-input"
-          required
-          value={email}
-          onChange={handleChangeEmail}
-        />
-        <input
-          type="password"
-          minLength={8}
-          data-testid="password-input"
-          value={password}
-          onChange={handleChangePassword}
-        />
-        <button data-testid="signup-button" disabled={isDisabled}>
+    <main>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-row px-5 py-4 mb-2 h-fit">
+        <div className="flex flex-col mr-5">
+          <input
+            type="email"
+            data-testid="email-input"
+            required
+            value={email}
+            placeholder="이메일"
+            onChange={handleChangeEmail}
+            className="border-b border-b-slate-300 w-60 mb-2"
+          />
+          <input
+            type="password"
+            minLength={8}
+            data-testid="password-input"
+            value={password}
+            onChange={handleChangePassword}
+            placeholder="비밀번호"
+            className="border-b border-b-slate-300 w-60"
+          />
+        </div>
+        <button
+          data-testid="signup-button"
+          disabled={isDisabled}
+          className="disabled:bg-slate-300 bg-slate-400 px-3 rounded-md text-white">
           회원가입
         </button>
-        {errorMessage && <span>{errorMessage}</span>}
       </form>
-      <span>
-        이미 회원이라면 <Link to="/signin">로그인 하러 가기</Link>
-      </span>
-    </div>
+      <div className="flex flex-col px-5 ">
+        {errorMessage && <span className="text-red-500">{errorMessage}</span>}
+        <span className="text-slate-600">
+          이미 회원이라면{" "}
+          <Link to="/signin" className="text-blue-400">
+            로그인 하러 가기
+          </Link>
+        </span>
+      </div>
+    </main>
   );
 };
