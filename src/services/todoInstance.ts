@@ -16,12 +16,12 @@ export function getTodos() {
   return todoInstance.get("/todos").then((res) => res.data);
 }
 
-export function updateTodo(id: string, todo: string, isCompleted: boolean) {
+export function updateTodo(id: number, todo: string, isCompleted: boolean) {
   return todoInstance
     .put(`/todos/${id}`, { todo, isCompleted })
     .then((res) => res.data);
 }
 
-export function deleteTodo(id: string) {
+export function deleteTodo(id: number) {
   return todoInstance.delete(`/todos/${id}`).then((res) => res.data);
 }
