@@ -22,6 +22,7 @@ export const AddTodoForm = ({ setTodoList }: Props) => {
       createTodo(todoTitle).then((res) => {
         setTodoList((prev) => [...prev, res]);
       });
+      setTodoTitle("");
     },
     [todoTitle, setTodoList]
   );
