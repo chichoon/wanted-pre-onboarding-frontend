@@ -6,5 +6,5 @@ export function useCheckLogin() {
 
   useEffect(() => {
     localStorage.getItem("token") ? nav("/todo") : nav("/signin");
-  });
+  }, []);
 }
