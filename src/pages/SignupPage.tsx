@@ -21,9 +21,11 @@ export const SignupPage = () => {
         email,
         password,
       };
-      console.log(body);
       axios
-        .post("/auth/signup", body)
+        .post(
+          "https://www.pre-onboarding-selection-task.shop/auth/signup",
+          body
+        )
         .then(() => {
           alert("회원가입에 성공하였습니다.");
           nav("/signin");

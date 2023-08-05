@@ -21,9 +21,11 @@ export const SigninPage = () => {
         email,
         password,
       };
-      console.log(body);
       axios
-        .post("/auth/signin", body)
+        .post(
+          "https://www.pre-onboarding-selection-task.shop/auth/signin",
+          body
+        )
         .then((res) => {
           localStorage.setItem("token", res.data.access_token);
         })
