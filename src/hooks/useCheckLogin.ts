@@ -3,8 +3,17 @@ import { useNavigate } from "react-router-dom";
 
 export function useCheckLogin() {
   const nav = useNavigate();
+  const { pathname } = window.location;
 
   useEffect(() => {
-    localStorage.getItem("token") ? nav("/todo") : nav("/signin");
+    if (pathname === "/todo" && !localStorage.getItem("token")) {
+      nav("/signin");
+    }
+    if (
+      pathname === "/signin" ||
+      (pathname === "signup" && localStorage.getItem("token"))
+    ) {
+      nav("/todo");
+    }
   }, []);
 }
