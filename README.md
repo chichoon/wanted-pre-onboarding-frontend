@@ -11,6 +11,9 @@ npm run start
 
 ## 데모 영상
 
+https://github.com/chichoon/wanted-pre-onboarding-frontend/assets/37893979/e8b733d0-9ef5-4ef2-ae2f-324fc56f4e8a
+
+
 ## 배포 링크
 
 ### [https://todo-app-chichoon.vercel.app/](https://todo-app-chichoon.vercel.app/)
